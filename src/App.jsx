@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ColorfulMessage from "./components/ColorfulMessage";
 
 const App = () => {
-  console.log("最初");
   const [num, setNum] = useState(0);
   const [faceShow, setFaceShow] = useState(true);
 
@@ -14,11 +13,15 @@ const App = () => {
     setFaceShow(!faceShow);
   };
 
-  if (num % 3 === 0) {
-    faceShow || setFaceShow(true);
-  } else {
-    faceShow && setFaceShow(false);
-  }
+  useEffect(() => {
+    if (num > 0) {
+      if (num % 3 === 0) {
+        faceShow || setFaceShow(true);
+      } else {
+        faceShow && setFaceShow(false);
+      }
+    }
+  }, [num]);
 
   return (
     <>
